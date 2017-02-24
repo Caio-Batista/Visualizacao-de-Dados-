@@ -10,19 +10,15 @@ body {
   font: 11px sans-serif;
   align-content: center;
 }
-
-
 .axis path,
 .axis line {
   fill: none;
   stroke: #000;
   shape-rendering: crispEdges;
 }
-
 .dot {
   stroke: #000;
 }
-
 .tooltip {
   position: absolute;
   width: 200px;
@@ -53,7 +49,7 @@ body {
 
 
 <body background="background.jpg">
-<script src="http://d3js.org/d3.v4.min.js"></script>
+<script src="http://d3js.org/d3.v3.min.js"></script>
 <div><h2>TESTEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE</h2></div>
 
 <div style="text-align: center">
@@ -70,72 +66,56 @@ body {
 
 <div>
 <script>
-
 var margin = {top: 20, right: 20, bottom: 30, left: 40},
    width = 960 - margin.left - margin.right,
   height = 500 - margin.top - margin.bottom;
-// add the graph canvas to the body of the webpage
-var svg = d3.select("body").append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
-  .append("g")
-    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-
 /*
  * value accessor - returns the value to encode for a given data object.
  * scale - maps value to a visual display encoding, such as a pixel position.
  * map function - maps from data value to display value
  * axis - sets up axis
  */
-
 // setup x
 var xValue = function(d) { return d.Calories;}, // data -> value
-    xScale = d3.scaleLinear().range([0, width]), // value -> display
+    xScale = d3.scale.linear().range([0, width]), // value -> display
     xMap = function(d) { return xScale(xValue(d));}, // data -> display
-    xAxis = d3.axisBottom().scale(xScale).orient("bottom");
-
+    xAxis = d3.svg.axis().scale(xScale).orient("bottom");
 // setup y
 var yValue = function(d) { return d["Protein (g)"];}, // data -> value
-    yScale = d3.scaleLinear().range([height, 0]), // value -> display
+    yScale = d3.scale.linear().range([height, 0]), // value -> display
     yMap = function(d) { return yScale(yValue(d));}, // data -> display
-    yAxis = d3.axisLeft().scale(yScale).orient("left");
-
+    yAxis = d3.svg.axis().scale(yScale).orient("left");
 // setup fill color
 var cValue = function(d) { return d.Manufacturer;},
     color = d3.scale.category10();
-
-
+// add the graph canvas to the body of the webpage
+var svg = d3.select("body").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 // add the tooltip area to the webpage
 var tooltip = d3.select("body").append("div")
     .attr("class", "tooltip")
     .style("opacity", 0);
-
 // load data
 d3.csv("data.csv", function(error, data) {
   var arr = {};
-
   // change string (from CSV) into number format
   data.forEach(function(d) {
     d.Calories = +d["achaQueFoiAleatorio"];
     d["Protein (g)"] = +d["achaQueEhAleatorio"];
     if (!([d["achaQueFoiAleatorio"],d["achaQueEhAleatorio"]] in arr)){
       arr[[d["achaQueFoiAleatorio"],d["achaQueEhAleatorio"]]] = 1;
-
     }else{
     arr[[d["achaQueFoiAleatorio"],d["achaQueEhAleatorio"]]] += 1;}
       console.log(d);
       console.log(arr);
   }
-
-
-
   );
-
   // don't want dots overlapping axis, so add in buffer to data domain
   xScale.domain([d3.min(data, xValue)-1, d3.max(data, xValue)+1]);
   yScale.domain([d3.min(data, yValue)-1, d3.max(data, yValue)+1]);
-
   // x-axis
   svg.append("g")
       .attr("class", "x axis")
@@ -147,7 +127,6 @@ d3.csv("data.csv", function(error, data) {
       .attr("y", -6)
       .style("text-anchor", "end")
       .text("Acha que é aleatorio");
-
   // y-axis
   svg.append("g")
       .attr("class", "y axis")
@@ -159,7 +138,6 @@ d3.csv("data.csv", function(error, data) {
       .attr("dy", ".71em")
       .style("text-anchor", "end")
       .text("Acha que foi aleatorio");
-
   // draw dots
   svg.selectAll(".dot")
       .data(data)
@@ -182,10 +160,7 @@ d3.csv("data.csv", function(error, data) {
                .duration(500)
                .style("opacity", 0);
       });
-
-
 });
-
 </script>
 </div>
 
