@@ -8,6 +8,7 @@
 <style>
 body {
   font: 11px sans-serif;
+  align-content: center;
 }
 
 
@@ -29,10 +30,45 @@ body {
   pointer-events: none;
 }
 </style>
-<body>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <title>Laboratório 3 -  Visualização de dados - Caio Batista</title>
+</head>
+<div>
+
+
+<nav id="navbar" class="navbar navbar-inverse navbar-fixed-top" style="background: #003399" >
+    <div class="container" style="background: #003399 " >
+        <div class="navbar-header" style="background: #003399">
+            <a class="navbar-brand" href="#" style="text-align: center">Laboratório 3 -  Visualização de dados - Caio Batista</a>
+        </div>
+    </div>
+</nav>
+
+</div>
+
+
+<body background="background.jpg">
 <script src="http://d3js.org/d3.v3.min.js"></script>
+<div><h2>TESTEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE</h2></div>
+
+<div style="text-align: center">
+<h1>Quem acha que respondeu o form de maneira mais aleatória do que se considera?</h1>
+<h4>Neste laboratório, como descrito pelo professor, deveríamos dessa vez corrigir alguns pontos nos quais falhamos
+ na entrega do laboratório anterior. E como escolha, eu fiquei com o ótimo trabalho do colega de classe Diogo que se encontra
+ <a href="https://github.com/diogoflorencio/Visualizacao-de-Dados-/">aqui</a>.</h4>
+ <h4>Uma sugestão de melhoria, e que foi base para esse gráfico, foi correlacionar as respostas por pessoa. O que seria mais
+ fácil para visualizar os dados que também tem ajuda com o tamanho dos pontos, estando de acordo com a quantidade de escolhas exatamente daquele tipo (x,y). Consequentemente
+  esse tipo de visualização também ajuda na resposta a pergunta em questão, e na percepção de padrões/tendências.
+ </h4>
+</div>
 
 
+<div>
 <script>
 
 var margin = {top: 20, right: 20, bottom: 30, left: 40},
@@ -110,7 +146,7 @@ d3.csv("data.csv", function(error, data) {
       .attr("x", width)
       .attr("y", -6)
       .style("text-anchor", "end")
-      .text("Calories");
+      .text("Acha que é aleatorio");
 
   // y-axis
   svg.append("g")
@@ -122,7 +158,7 @@ d3.csv("data.csv", function(error, data) {
       .attr("y", 6)
       .attr("dy", ".71em")
       .style("text-anchor", "end")
-      .text("Protein (g)");
+      .text("Acha que foi aleatorio");
 
   // draw dots
   svg.selectAll(".dot")
@@ -151,6 +187,8 @@ d3.csv("data.csv", function(error, data) {
 });
 
 </script>
+</div>
+
 </body>
 
 </html>
