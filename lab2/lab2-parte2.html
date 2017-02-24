@@ -19,7 +19,7 @@ div.l1 {
   background-color: #3182bd; /* cores: topo, direita, inferior, esquerda */
   position: absolute;
   left: 270px;
-  top: 600px; 
+  top: 600px;
  }
  p.l1{
   position: absolute;
@@ -33,7 +33,7 @@ div.l1 {
   background-color: #6baed6;
   position: absolute;
   left: 50%;
-  top: 600px; 
+  top: 600px;
  }
  p.l2{
   position: absolute;
@@ -44,7 +44,7 @@ div.l1 {
 </style>
 <body background="background.jpg">
 	<h2> <center> Quem acha que respondeu o form de maneira mais aleatória do que se considera?</center></h2>
-	<form> 
+	<form>
 	  <label><input type="radio" name="mode" value="grouped"> Agrupar</label>
 	  <label><input type="radio" name="mode" value="stacked" checked> Empilhar</label>
 	</form>
@@ -163,14 +163,14 @@ function transitionStacked() {
 
 function countAchamQueForamAleatorio() {
   var values = [0,0,0,0,0,0,0,0,0,0,0];
-  for (var i = 0; i <= achaQueFoiAleatorio.length; i++) 
+  for (var i = 0; i <= achaQueFoiAleatorio.length; i++)
       values[achaQueFoiAleatorio[i]]++;
   return values;
 }
 
 function countAchamQueSaoAleatorio() {
   var values = [0,0,0,0,0,0,0,0,0,0,0];
-  for (var i = 0; i <= achaQueEhAleatorio.length; i++) 
+  for (var i = 0; i <= achaQueEhAleatorio.length; i++)
       if(achaQueEhAleatorio[i] > achaQueFoiAleatorio[i])
         values[achaQueFoiAleatorio[i]]++;
   return values;
